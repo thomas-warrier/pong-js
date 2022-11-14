@@ -1,30 +1,22 @@
-can = document.getElementById("can");
-const width = can.width;
-const height = can.height;
-const FPS = 1 / 60;
-ctx = can.getContext("2d");
+can = document.getElementById("can"); //pour avoir le canva
+const width = can.width; //pour avoir la largeur du canva
+const height = can.height; //pour avoir la hauteur du canva
+const FPS = 1 / 60; //pour avoir 60 images par seconde
+ctx = can.getContext("2d"); //récupère le context 2d du canva (car c'est un jeu 2d)
 
-var p1 = new Player(20, (height - hp) / 2, 90, 83);
-var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75);
-var ball = new Ball((width/2),(height/2));
+var p1 = new Player(20, (height - hp) / 2, 90, 83); //on place le player un a gauche au milieu
+var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75); //on place le player deux a droite au milieu
+var ball = new Ball((width/2),(height/2)); //on place la ball au milieu du canva
 
 
+//pour detecter quand la touche est pressée afin de mettre la vitesse du player a speedPlayer
 function pressKey(ev) {
     p1.keyPress(ev.keyCode);
     p2.keyPress(ev.keyCode);
 }
 
-function releaseKey(ev) {
-    p1.keyRelease(ev.keyCode);
-    p2.keyRelease(ev.keyCode);
-}
-function update() {
 
-	p1.update();
-	p2.update();
-    ball.update([p1,p2]);
-	draw();
-}
+//pour draw on efface tout ce qu'il y avait avant pour tout redessiner
 function draw() {
 	clear();
 
@@ -33,8 +25,21 @@ function draw() {
     ball.draw();
 }
 
-setInterval(update, FPS * 1000);
-document.addEventListener("keydown", pressKey);
-document.addEventListener("keyup", releaseKey);
+//pour detecter quand la touche est relachée afin de remettre la vitesse du player a 0
+function releaseKey(ev) {
+    p1.keyRelease(ev.keyCode);
+    p2.keyRelease(ev.keyCode);
+}
+//pour update la position des players et de la ball (se fait 60 fois toute les secondes) 
+function update() {
+	p1.update();
+	p2.update();
+    ball.update([p1,p2]);
+	draw();
+}
+
+setInterval(update, FPS * 1000); //on set l'intervalle pour update tout les FPS*1000
+document.addEventListener("keydown", pressKey);  //on appelle keyPress quand une touche est pressé
+document.addEventListener("keyup", releaseKey);//on appelle releaseKey quand une touche est relaché
 
 
