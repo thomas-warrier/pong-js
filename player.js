@@ -3,6 +3,13 @@ const wp = 20;
 const hp = 80;
 const speedPlayer = 5;
 class Player {
+	/**
+	 * 
+	 * @param {double} x position x de joueur
+	 * @param {double} y position y de joueur
+	 * @param {int} up le code de la touche pour allez vers le haut
+	 * @param {int} down le code de la touche pour allez vers le bas
+	 */
 	constructor(x, y, up, down) {
 		this.rect = new Rect(x, y, wp, hp);
 		this.score = 0;
@@ -24,6 +31,10 @@ class Player {
 		}
 	}
 
+	/**
+	 * doit être appeler quand une touche est presser
+	 * @param {int} code code de la touche presser
+	 */
 	keyPress(code) {
 		switch (code) {
 			case this.up:
@@ -36,6 +47,11 @@ class Player {
 				break;
 		}
 	}
+
+	/**
+	 * doit être appleer quand une touche est relacher
+	 * @param {int} code code de la touche presser
+	 */
 	keyRelease(code) {
 		switch (code) {
 			case this.up:
