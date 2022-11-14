@@ -4,6 +4,9 @@ const height = can.height;
 const FPS = 1 / 60;
 ctx = can.getContext("2d");
 
+var p1 = new Player(20, (height - hp) / 2, 90, 83);
+var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75);
+
 
 
 function pressKey(ev) {
@@ -11,10 +14,17 @@ function pressKey(ev) {
 function releaseKey(ev) {
 }
 function update() {
-    draw();
+
+	p1.update();
+	p2.update();
+
+	draw();
 }
 function draw() {
-    clear();
+	clear();
+
+	p1.draw();
+	p2.draw();
 }
 
 setInterval(update, FPS * 1000);
