@@ -10,7 +10,10 @@ var ball = new Ball((width/2),(height/2));
 
 
 function pressKey(ev) {
+    p1.keyPress(ev.keyCode);
+    p2.keyPress(ev.keyCode);
 }
+
 function releaseKey(ev) {
 }
 function update() {
@@ -31,4 +34,5 @@ function draw() {
 setInterval(update, FPS * 1000);
 document.addEventListener("keydown", pressKey);
 document.addEventListener("keyup", releaseKey);
+
 
