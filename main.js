@@ -6,7 +6,7 @@ ctx = can.getContext("2d");
 
 var p1 = new Player(20, (height - hp) / 2, 90, 83);
 var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75);
-
+var ball = new Ball((width/2),(height/2));
 
 
 function pressKey(ev) {
