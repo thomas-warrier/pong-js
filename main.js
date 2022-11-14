@@ -15,6 +15,8 @@ function pressKey(ev) {
 }
 
 function releaseKey(ev) {
+    p1.keyRelease(ev.keyCode);
+    p2.keyRelease(ev.keyCode);
 }
 function update() {
 
