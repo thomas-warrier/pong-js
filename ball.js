@@ -1,3 +1,8 @@
+function normalize(x, y) {
+	return Math.sqrt(x ** 2 + y ** 2);
+}
+
+
 const speedBall = 9;
 const rayonBall = 10;
 class Ball {
@@ -25,7 +30,7 @@ class Ball {
 
 
 	update(ar) {
-		
+		this.move(ar)
 	}
 
 	updateRect() {
@@ -33,6 +38,23 @@ class Ball {
 	}
 
 	move(ar) {
-		
+		let norm = normalize(this.vx, this.vy);
+		if (norm != 0) {
+			if (this.rect.top() <= 0 || this.rect.bot() >= height) {
+				this.vy = -this.vy;
+			}
+			for (var p of ar) {
+				if (this.rect.coll(p.rect)) {
+					this.vx = -this.vx;
+					this.vy = (this.y - p.rect.y - p.rect.h / 2) / p.rect.h;
+
+					break;
+				}
+			}
+
+			this.x += (this.vx / norm) * speedBall;
+			this.y += (this.vy / norm) * speedBall;
+			this.updateRect();
+		}
 	}
 }
