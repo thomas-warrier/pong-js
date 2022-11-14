@@ -9,14 +9,18 @@ var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75); //on place le p
 var ball = new Ball((width/2),(height/2)); //on place la ball au milieu du canva
 
 
-//pour detecter quand la touche est pressée afin de mettre la vitesse du player a speedPlayer
+/**
+ *  appelé quand la touche est pressée afin de mettre la vitesse du player a speedPlayer
+ */
 function pressKey(ev) {
     p1.keyPress(ev.keyCode);
     p2.keyPress(ev.keyCode);
 }
 
 
-//pour draw on efface tout ce qu'il y avait avant pour tout redessiner
+/**
+ * pour draw on efface tout ce qu'il y avait avant pour tout redessiner
+ */
 function draw() {
 	clear();
 
@@ -25,12 +29,16 @@ function draw() {
     ball.draw();
 }
 
-//pour detecter quand la touche est relachée afin de remettre la vitesse du player a 0
+/**
+ * appelé quand la touche est relachée afin de remettre la vitesse du player a 0 
+ */
 function releaseKey(ev) {
     p1.keyRelease(ev.keyCode);
     p2.keyRelease(ev.keyCode);
 }
-//pour update la position des players et de la ball (se fait 60 fois toute les secondes) 
+/**
+ * pour update la position des players et de la ball (se fait 60 fois toute les secondes)
+ */
 function update() {
 	p1.update();
 	p2.update();
@@ -39,7 +47,7 @@ function update() {
 }
 
 setInterval(update, FPS * 1000); //on set l'intervalle pour update tout les FPS*1000
-document.addEventListener("keydown", pressKey);  //on appelle keyPress quand une touche est pressé
-document.addEventListener("keyup", releaseKey);//on appelle releaseKey quand une touche est relaché
+document.addEventListener("keydown", pressKey);  //on appelle pressKey quand une touche est pressée
+document.addEventListener("keyup", releaseKey);//on appelle releaseKey quand une touche est relachée
 
 
