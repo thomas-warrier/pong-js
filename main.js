@@ -25,7 +25,7 @@ function draw() {
 
 	p1.draw();
 	p2.draw();
-    ball.draw()
+    ball.draw();
 }
 
 setInterval(update, FPS * 1000);
