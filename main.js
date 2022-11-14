@@ -22,7 +22,7 @@ function update() {
 
 	p1.update();
 	p2.update();
-
+    ball.update([p1,p2]);
 	draw();
 }
 function draw() {
