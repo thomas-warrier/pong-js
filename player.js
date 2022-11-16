@@ -2,6 +2,10 @@
 const wp = 20;
 const hp = 80;
 const speedPlayer = 5;
+const coteDuCamp={
+	"left" : "gauche",
+	"right" : "right"
+}
 class Player {
 	/**
 	 * 
@@ -9,20 +13,31 @@ class Player {
 	 * @param {double} y position y de joueur
 	 * @param {int} up le code de la touche pour allez vers le haut
 	 * @param {int} down le code de la touche pour allez vers le bas
+	 * 
 	 */
-	constructor(x, y, up, down) {
+	constructor(x, y, up, down,cote) {
 		this.rect = new Rect(x, y, wp, hp);
 		this.score = 0;
 		this.up = up;
 		this.down = down;
+		this.cote=cote;
 
 		this.vy = 0;
+	}
+
+	ballOutOfScreen(ball,cote){
+		if (cote==coteDuCamp.left && ball.rect.right() < 0 || 
+		cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
+			score++;
+		}
 	}
 
 	draw() {
 		setColor("white");
 		this.rect.draw();
 	}
+
+
 
 	update() {
 		this.rect.y += this.vy;
