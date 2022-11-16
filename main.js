@@ -43,6 +43,8 @@ function update() {
 	p1.update();
 	p2.update();
     ball.update([p1,p2]);
+    p1.ballOutOfScreen(ball); //se charge de faire respawn la ball et augmenter le score
+    p2.ballOutOfScreen(ball);
 	draw();
 }
 

@@ -25,13 +25,19 @@ class Player {
 		this.vy = 0;
 	}
 
-	ballOutOfScreen(ball,cote){
+	ballOutOfScreen(ball){
 		if (cote==coteDuCamp.left && ball.rect.right() < 0 || 
 		cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
+			ball.spawn()
 			score++;
 		}
 	}
 
+	playerOutOfScreen(){
+		if(this.rect.top()>height || this.rect.bot()<0){
+			this.rect.y -= this.vy;
+		}
+	}
 	draw() {
 		setColor("white");
 		this.rect.draw();
@@ -44,6 +50,7 @@ class Player {
 		if (this.rect.bot() >= height || this.rect.top() <= 0) {
 			this.y -= this.vy;
 		}
+		this.playerOutOfScreen()
 	}
 
 	/**
