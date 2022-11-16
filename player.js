@@ -25,11 +25,13 @@ class Player {
 		this.vy = 0;
 	}
 
-	ballOutOfScreen(ball){
+	detectWinRound(ball){
 		if (this.cote==coteDuCamp.left && ball.rect.right() < 0 || 
 		this.cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
-			ball.spawn()
-			score++;
+			ball.spawn();
+			console.log(ball);
+			this.score++;
+			console.log("+1 point");
 		}
 	}
 
@@ -39,6 +41,7 @@ class Player {
 			this.vy=0;
 		}
 	}
+
 	draw() {
 		setColor("white");
 		this.rect.draw();

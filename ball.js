@@ -26,6 +26,7 @@ class Ball {
 		this.y = this.defaultY;
 		this.updateRect();//met a jour l'attribut rect (pour correspondre aux nouvelles coordonnée)
 
+
 		do {
 			this.vx = (Math.random() * 2 - 1); 
 			this.vy = Math.random() * 2 - 1;

@@ -4,8 +4,8 @@ const height = can.height; //pour avoir la hauteur du canva
 const FPS = 1 / 60; //pour avoir 60 images par seconde
 ctx = can.getContext("2d"); //récupère le context 2d du canva 
 
-var p1 = new Player(20, (height - hp) / 2, 90, 83); //on place le player un a gauche au milieu
-var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75); //on place le player deux a droite au milieu
+var p1 = new Player(20, (height - hp) / 2, 90, 83, coteDuCamp.left); //on place le player un a gauche au milieu
+var p2 = new Player(width - wp - 20, (height - hp) / 2, 73, 75, coteDuCamp.right); //on place le player deux a droite au milieu
 var ball = new Ball((width/2),(height/2)); //on place la ball au milieu du canva
 
 
@@ -43,8 +43,8 @@ function update() {
 	p1.update();
 	p2.update();
     ball.update([p1,p2]);
-    p1.ballOutOfScreen(ball); //se charge de faire respawn la ball et augmenter le score
-    p2.ballOutOfScreen(ball);
+    p1.detectWinRound(ball); //se charge de faire respawn la ball et augmenter le score
+    p2.detectWinRound(ball);
 	draw();
 }
 
