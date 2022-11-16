@@ -26,16 +26,17 @@ class Player {
 	}
 
 	ballOutOfScreen(ball){
-		if (cote==coteDuCamp.left && ball.rect.right() < 0 || 
-		cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
+		if (this.cote==coteDuCamp.left && ball.rect.right() < 0 || 
+		this.cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
 			ball.spawn()
 			score++;
 		}
 	}
 
 	playerOutOfScreen(){
-		if(this.rect.top()>height || this.rect.bot()<0){
+		if(this.rect.top()<0 || this.rect.bot()>height){
 			this.rect.y -= this.vy;
+			this.vy=0;
 		}
 	}
 	draw() {
