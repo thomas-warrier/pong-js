@@ -1,7 +1,7 @@
 
 const wp = 20;
 const hp = 80;
-const speedPlayer = 5;
+const speedPlayer = height/70;
 const coteDuCamp={
 	"left" : "gauche",
 	"right" : "right"
@@ -26,8 +26,8 @@ class Player {
 	}
 
 	detectWinRound(ball){
-		if (this.cote==coteDuCamp.left && ball.rect.right() < 0 || 
-		this.cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
+		if (this.cote==coteDuCamp.left && ball.rect.left() > width || 
+		this.cote==coteDuCamp.right &&  ball.rect.right() < 0){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
 			ball.spawn();
 			this.score++;
 		}

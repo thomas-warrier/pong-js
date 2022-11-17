@@ -3,7 +3,7 @@ function normalize(x, y) {
 }
 
 
-const speedBall = 9;
+const speedBall = width/70;
 const rayonBall = 10;
 class Ball {
 	/**
