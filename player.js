@@ -29,9 +29,7 @@ class Player {
 		if (this.cote==coteDuCamp.left && ball.rect.right() < 0 || 
 		this.cote==coteDuCamp.right && ball.rect.left() > width){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
 			ball.spawn();
-			console.log(ball);
 			this.score++;
-			console.log("+1 point");
 		}
 	}
 
@@ -45,9 +43,16 @@ class Player {
 	draw() {
 		setColor("white");
 		this.rect.draw();
+		this.drawScore();
 	}
 
-
+	drawScore(){
+		let x= width/4;
+		if (this.cote==coteDuCamp.right){
+			x=(width/4)*3;
+		}
+		ctx.fillText(this.score.toString(), x , 50);
+	}
 
 	update() {
 		this.rect.y += this.vy;

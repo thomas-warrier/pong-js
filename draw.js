@@ -36,3 +36,4 @@ function clear() {
 	setColor("black");
 	drawRect(0, 0, width, height);
 }
+
