@@ -48,5 +48,3 @@ function update() {
 setInterval(update, FPS * 1000); //on set l'intervalle pour update tout les FPS*1000
 document.addEventListener("keydown", pressKey);  //on appelle pressKey quand une touche est pressée
 document.addEventListener("keyup", releaseKey);//on appelle releaseKey quand une touche est relachée
-
-
