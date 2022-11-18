@@ -13,18 +13,6 @@ function pressKey(ev) {
     p2.keyPress(ev.keyCode);
 }
 
-
-/**
- * pour draw on efface tout ce qu'il y avait avant pour tout redessiner
- */
-function draw() {
-	clear();
-
-	p1.draw();
-	p2.draw();
-    ball.draw();
-}
-
 /**
  * appelé quand la touche est relachée afin de remettre la vitesse du player a 0 
  */
@@ -32,6 +20,19 @@ function releaseKey(ev) {
     p1.keyRelease(ev.keyCode);
     p2.keyRelease(ev.keyCode);
 }
+
+
+/**
+ * pour draw on efface tout ce qu'il y avait avant pour tout redessiner
+ */
+ function draw() {
+	clear();
+
+	p1.draw();
+	p2.draw();
+    ball.draw();
+}
+
 /**
  * pour update la position des players et de la ball (se fait 60 fois toute les secondes)
  */

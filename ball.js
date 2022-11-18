@@ -3,7 +3,7 @@ function normalize(x, y) {
 }
 
 
-const speedBall = width/70;
+const speedBall = width / 80;
 const rayonBall = 10;
 class Ball {
 	/**
@@ -18,6 +18,7 @@ class Ball {
 		this.spawn();
 	}
 
+
 	/**
 	 * fait rappraitre la ball à sa possition inital
 	 */
@@ -26,12 +27,15 @@ class Ball {
 		this.y = this.defaultY;
 		this.updateRect();//met a jour l'attribut rect (pour correspondre aux nouvelles coordonnée)
 
-
-		do {
-			this.vx = (Math.random() * 2 - 1); 
-			this.vy = Math.random() * 2 - 1;
-		} while (Math.abs(this.vx) <= 0.2);// pr que la balle aille sur les coté et pas uniquement vers le haut
-
+		this.vx = this.vy = 0;
+		setTimeout(() => {
+			do {
+				this.vx = (Math.random() * 2 - 1);
+				this.vy = Math.random() * 2 - 1;
+			} while (Math.abs(this.vx) <= 0.2);// pr que la balle aille sur les coté et pas uniquement vers le haut
+			this.x = this.defaultX;
+			this.y = this.defaultY;
+		}, 1000);
 	}
 	draw() {
 		setColor("white");
@@ -78,4 +82,5 @@ class Ball {
 			this.updateRect();
 		}
 	}
+
 }
