@@ -1,4 +1,4 @@
-function normalize(x, y) {
+function lenght(x, y) {
 	return Math.sqrt(x ** 2 + y ** 2);
 }
 
@@ -56,13 +56,13 @@ class Ball {
 	}
 
 	move(players) {
-		let norm = normalize(this.vx, this.vy); //calcule la norm du vecteur déplacement pour évité que la balle se déplace plus vite en diagnal
+		let norm = lenght(this.vx, this.vy); //calcule la norm du vecteur déplacement pour évité que la balle se déplace plus vite en diagnal
 		if (norm != 0) {
 			if (this.rect.top() <= 0 || this.rect.bot() >= height) {
 				this.vy = -this.vy;
 			}
 			for (var player of players) {
-				if (this.rect.coll(player.rect)) { // détecte une collision avec un joueurs
+				if (this.rect.coll(player.rect)) {// détecte une collision avec un joueurs
 					this.vx = -this.vx; // inverse le déplacement horizontal
 
 					//si la balle touch le haut du joueur elle ira vers le haut
