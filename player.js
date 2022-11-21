@@ -11,8 +11,8 @@ class Player {
 	 * 
 	 * @param {double} x position x de joueur
 	 * @param {double} y position y de joueur
-	 * @param {int} up le code de la touche pour allez vers le haut
-	 * @param {int} down le code de la touche pour allez vers le bas
+	 * @param {int} up le nom de la touche pour allez vers le haut
+	 * @param {int} down le nom de la touche pour allez vers le bas
 	 * 
 	 */
 	constructor(x, y, up, down,cote) {
@@ -51,7 +51,7 @@ class Player {
 		if (this.cote==coteDuCamp.right){
 			x=(width/4)*3;
 		}
-		ctx.fillText(this.score.toString(), x , 50);
+		drawText(this.score.toString(), x , 50);
 	}
 
 	update() {
@@ -64,10 +64,10 @@ class Player {
 
 	/**
 	 * doit être appeler quand une touche est presser
-	 * @param {int} code code de la touche presser
+	 * @param {int} key code de la touche presser
 	 */
-	keyPress(code) {
-		switch (code) {
+	keyPress(key) {
+		switch (key) {
 			case this.up:
 				this.vy = -speedPlayer;
 				break;
@@ -81,10 +81,10 @@ class Player {
 
 	/**
 	 * doit être appleer quand une touche est relacher
-	 * @param {int} code code de la touche presser
+	 * @param {int} key code de la touche presser
 	 */
-	keyRelease(code) {
-		switch (code) {
+	keyRelease(key) {
+		switch (key) {
 			case this.up:
 				this.vy = 0;
 				break;

@@ -4,3 +4,4 @@ const height = can.height; //pour avoir la hauteur du canva
 const FPS = 1 / 60; //pour avoir 60 images par seconde
 ctx = can.getContext("2d"); //récupère le context 2d du canva 
 ctx.font = '40px Helvetica';
+ctx.textAlign = "center";

@@ -29,6 +29,10 @@ function drawCircle(x, y, diametre) {
 	ctx.arc(x, y, diametre, 0, 2 * Math.PI, false)
 	ctx.fill()
 }
+
+function drawText(str, x, y) {
+	ctx.fillText(str, x, y);
+}
 /**
  * permet de clear le canva en dessinant un rectangle tout noir
  */
