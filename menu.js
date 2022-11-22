@@ -17,15 +17,13 @@ class Button {
 }
 
 class Menu {
-
-
 	constructor() {
 		this.centerX = width / 2;
 		this.menuLabel = "Menu";
 		this.buttons = [
 			new Button("Play", this.centerX, 150, () => {
-				statusGame.playing = true;
-				statusGame.inGame = true;
+				settingsGame.playing = true;
+				settingsGame.inGame = true;
 			}),
 		];
 		this.selected = 0;
@@ -54,23 +52,23 @@ class Menu {
 		}
 	}
 	update() {
-		if (statusGame.inGame) {
+		if (settingsGame.inGame) {
 			this.buttons = [
 				new Button("Resume", this.centerX, 150, () => {
-					statusGame.playing = true;
-					statusGame.inGame = true;
+					settingsGame.playing = true;
+					settingsGame.inGame = true;
 				}), 
 				new Button("New Game", this.centerX, 250, () => {
-					statusGame.playing = true;
-					statusGame.inGame = true;
+					settingsGame.playing = true;
+					settingsGame.inGame = true;
 					resteGame();
 				}),
 			];
 		} else {
 			this.buttons = [
 				new Button("Play", this.centerX, 150, () => {
-					statusGame.playing = true;
-					statusGame.inGame = true;
+					settingsGame.playing = true;
+					settingsGame.inGame = true;
 				}),
 			];
 		}

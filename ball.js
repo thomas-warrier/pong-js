@@ -3,7 +3,7 @@ function lenght(x, y) {
 }
 
 
-const speedBall = width / 80;
+var speedBall = width / 80;
 const rayonBall = 10;
 class Ball {
 	/**

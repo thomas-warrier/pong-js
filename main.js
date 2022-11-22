@@ -1,6 +1,9 @@
-var statusGame = {
+var settingsGame = {
     palying: false,
-    inGame: false
+    inGame: false,
+
+
+    difficulty: 1, // 0 : facile, 1 : moyen, 2 : difficile
 }
 
 var menu = new Menu();
@@ -16,15 +19,16 @@ var p2 = new Player(
 var ball = new Ball(width / 2, height / 2); //on place la ball au milieu du canva
 
 
-function resteGame(){
+function resteGame() {
     p1.score = p2.score = 0;
+    ball.spawn();
 }
 
 /**
  *  appelé quand la touche est pressée afin de mettre la vitesse du player a speedPlayer
  */
 function pressKey(ev) {
-    if (statusGame.playing) {
+    if (settingsGame.playing) {
         p1.keyPress(ev.key);
         p2.keyPress(ev.key);
     } else {//menu
@@ -32,7 +36,7 @@ function pressKey(ev) {
     }
 
     if (ev.key == "Escape") {
-        statusGame.playing = false;
+        settingsGame.playing = false;
     }
     ev.stopPropagation();
 }
@@ -41,7 +45,7 @@ function pressKey(ev) {
  * appelé quand la touche est relachée afin de remettre la vitesse du player a 0
  */
 function releaseKey(ev) {
-    if (statusGame.playing) {
+    if (settingsGame.playing) {
         p1.keyRelease(ev.key);
         p2.keyRelease(ev.key);
     } else {//menu
@@ -54,7 +58,7 @@ function releaseKey(ev) {
  */
 function draw() {
     clear();
-    if (statusGame.playing) {
+    if (settingsGame.playing) {
         p1.draw();
         p2.draw();
         ball.draw();
@@ -68,7 +72,7 @@ function draw() {
  * pour update la position des players et de la ball (se fait 60 fois toute les secondes)
  */
 function update() {
-    if (statusGame.playing) {
+    if (settingsGame.playing) {
         p1.update();
         p2.update();
         ball.update([p1, p2]);
