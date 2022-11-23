@@ -3,7 +3,7 @@ function lenght(x, y) {
 }
 
 
-var speedBall = width / 80;
+var speedBall = () => width / 100 + settingsGame.difficulty * 5;
 const rayonBall = 10;
 class Ball {
 	/**
@@ -76,8 +76,8 @@ class Ball {
 			}
 
 			//normalise les déplacements
-			this.x += (this.vx / norm) * speedBall;
-			this.y += (this.vy / norm) * speedBall;
+			this.x += (this.vx / norm) * speedBall();
+			this.y += (this.vy / norm) * speedBall();
 
 			this.updateRect();
 		}

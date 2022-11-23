@@ -1,10 +1,10 @@
 
 const wp = 20;
 const hp = 80;
-var speedPlayer = height/70;
-const coteDuCamp={
-	"left" : "gauche",
-	"right" : "right"
+var speedPlayer = () => height / 75 + settingsGame.difficulty * 7;
+const coteDuCamp = {
+	"left": "gauche",
+	"right": "right"
 }
 class Player {
 	/**
@@ -15,28 +15,28 @@ class Player {
 	 * @param {int} down le nom de la touche pour allez vers le bas
 	 * 
 	 */
-	constructor(x, y, up, down,cote) {
+	constructor(x, y, up, down, cote) {
 		this.rect = new Rect(x, y, wp, hp);
 		this.score = 0;
 		this.up = up;
 		this.down = down;
-		this.cote=cote;
+		this.cote = cote;
 
 		this.vy = 0;
 	}
 
-	detectWinRound(ball){
-		if (this.cote==coteDuCamp.left && ball.rect.left() > width || 
-		this.cote==coteDuCamp.right &&  ball.rect.right() < 0){ //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
+	detectWinRound(ball) {
+		if (this.cote == coteDuCamp.left && ball.rect.left() > width ||
+			this.cote == coteDuCamp.right && ball.rect.right() < 0) { //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
 			ball.spawn();
 			this.score++;
 		}
 	}
 
-	playerOutOfScreen(){
-		if(this.rect.top()<0 || this.rect.bot()>height){
+	playerOutOfScreen() {
+		if (this.rect.top() < 0 || this.rect.bot() > height) {
 			this.rect.y -= this.vy;
-			this.vy=0;
+			this.vy = 0;
 		}
 	}
 
@@ -46,12 +46,12 @@ class Player {
 		this.drawScore();
 	}
 
-	drawScore(){
-		let x= width/4;
-		if (this.cote==coteDuCamp.right){
-			x=(width/4)*3;
+	drawScore() {
+		let x = width / 4;
+		if (this.cote == coteDuCamp.right) {
+			x = (width / 4) * 3;
 		}
-		drawText(this.score.toString(), x , 50);
+		drawText(this.score.toString(), x, 50);
 	}
 
 	update() {
@@ -69,10 +69,10 @@ class Player {
 	keyPress(key) {
 		switch (key) {
 			case this.up:
-				this.vy = -speedPlayer;
+				this.vy = -speedPlayer();
 				break;
 			case this.down:
-				this.vy = speedPlayer;
+				this.vy = speedPlayer();
 				break;
 			default:
 				break;
