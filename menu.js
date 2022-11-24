@@ -40,6 +40,11 @@ class Menu {
 				settingsGame.inGame = true;
 				resteGame();
 			}),
+			new Button(() => "Back To Menu", this.centerX, () => {
+				settingsGame.inGame = false;
+				
+			}),
+
 		];
 		this.selected = 0;
 	}
