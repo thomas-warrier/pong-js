@@ -3,7 +3,7 @@ var settingsGame = {
     inGame: false,
 
 
-    difficulty: 2, // 0 : facile, 1 : moyen, 2 : difficile
+    difficulty: 1, // 0 : facile, 1 : moyen, 2 : difficile
 }
 
 var menu = new Menu();

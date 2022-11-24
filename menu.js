@@ -24,8 +24,8 @@ class Menu {
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
 			}),
-			new Button("Difficulty ", this.centerX, () => {
-				
+			new Button(`Difficulty : ${settingsGame.difficulty}`, this.centerX, () => {
+				settingsGame.difficulty = settingsGame.difficulty++ % 3; 
 			})
 		];
 
