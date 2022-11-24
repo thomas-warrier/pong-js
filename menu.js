@@ -7,7 +7,7 @@ class Button {
 	}
 
 	draw(y) {
-		drawText(this.txt, this.x, y);
+		drawText(this.txt(), this.x, y);
 	}
 
 	run() {
@@ -20,21 +20,22 @@ class Menu {
 		this.centerX = width / 2;
 		this.menuLabel = "Menu";
 		this.buttonsStart = [
-			new Button("Play", this.centerX, () => {
+			new Button(() => "Play", this.centerX, () => {
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
 			}),
-			new Button(`Difficulty : ${settingsGame.difficulty}`, this.centerX, () => {
-				settingsGame.difficulty = settingsGame.difficulty++ % 3; 
+			new Button(() => `Difficulty : ${settingsGame.difficulty}`, this.centerX, () => {
+				settingsGame.difficulty = ++settingsGame.difficulty % 3;
+				console.log(settingsGame.difficulty);
 			})
 		];
 
 		this.buttonsPause = [
-			new Button("Resume", this.centerX, () => {
+			new Button(() => "Resume", this.centerX, () => {
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
 			}),
-			new Button("New Game", this.centerX, () => {
+			new Button(() => "New Game", this.centerX, () => {
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
 				resteGame();
