@@ -1,14 +1,13 @@
 
 class Button {
-	constructor(str, x, y, action) {
+	constructor(str, x, action) {
 		this.txt = str;
 		this.x = x;
-		this.y = y;
 		this.action = action;
 	}
 
-	draw() {
-		drawText(this.txt, this.x, this.y);
+	draw(y) {
+		drawText(this.txt, this.x, y);
 	}
 
 	run() {
@@ -20,58 +19,55 @@ class Menu {
 	constructor() {
 		this.centerX = width / 2;
 		this.menuLabel = "Menu";
-		this.buttons = [
-			new Button("Play", this.centerX, 150, () => {
+		this.buttonsStart = [
+			new Button("Play", this.centerX, () => {
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
+			}),
+			new Button("Difficulty ", this.centerX, () => {
+				
+			})
+		];
+
+		this.buttonsPause = [
+			new Button("Resume", this.centerX, () => {
+				settingsGame.playing = true;
+				settingsGame.inGame = true;
+			}),
+			new Button("New Game", this.centerX, () => {
+				settingsGame.playing = true;
+				settingsGame.inGame = true;
+				resteGame();
 			}),
 		];
 		this.selected = 0;
 	}
 
 	selecteDown() {
-		this.selected = (this.selected + 1) % this.buttons.length;
+		this.selected = (this.selected + 1) % this.listButton.length;
 	}
 	selecteUp() {
-		this.selected = Math.abs((this.selected - 1) % this.buttons.length);
+		this.selected = Math.abs((this.selected - 1) % this.listButton.length);
 	}
 
 
 	draw() {
 		setColor("white");
 		drawText(this.menuLabel, this.centerX, 50);
-
-		for (let i = 0; i < this.buttons.length; i++) {
-			let btn = this.buttons[i]
-			btn.draw();
+		let gapY = 100;
+		for (let i = 0; i < this.listButton.length; i++) {
+			let btn = this.listButton[i]
+			let currentGap = gapY * i + 210
+			btn.draw(currentGap);
 
 			if (this.selected == i) {
 				let w = 50;
-				drawRect(btn.x - w / 2, btn.y + 10, w, 2);
+				drawRect(btn.x - w / 2, currentGap + 10, w, 2);
 			}
 		}
 	}
 	update() {
-		if (settingsGame.inGame) {
-			this.buttons = [
-				new Button("Resume", this.centerX, 150, () => {
-					settingsGame.playing = true;
-					settingsGame.inGame = true;
-				}), 
-				new Button("New Game", this.centerX, 250, () => {
-					settingsGame.playing = true;
-					settingsGame.inGame = true;
-					resteGame();
-				}),
-			];
-		} else {
-			this.buttons = [
-				new Button("Play", this.centerX, 150, () => {
-					settingsGame.playing = true;
-					settingsGame.inGame = true;
-				}),
-			];
-		}
+		this.listButton = settingsGame.inGame ? this.buttonsPause : this.buttonsStart;
 	}
 
 	keyPressed(key) {
@@ -83,7 +79,7 @@ class Menu {
 				this.selecteDown();
 				break;
 			case "Enter":
-				this.buttons[this.selected].run();
+				this.listButton[this.selected].run();
 				break;
 			default:
 				break;
