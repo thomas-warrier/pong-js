@@ -1,9 +1,9 @@
 function lenght(x, y) {
-	return Math.sqrt(x ** 2 + y ** 2);
+	return Math.sqrt(x * x + y * y);
 }
 
 
-var speedBall = () => 10;//width / 100 + settingsGame.difficulty * 5
+var speedBall = () => width / 200 + settingsGame.difficulty * 3;
 const rayonBall = 10;
 class Ball {
 	/**
@@ -35,12 +35,6 @@ class Ball {
 			} while (Math.abs(this.vx) <= 0.2);// pr que la balle aille sur les coté et pas uniquement vers le haut
 			this.x = this.defaultX;
 			this.y = this.defaultY;
-
-			let longeurDeplacement = lenght(this.vx, this.vy);
-
-			// //normalise avec la vitesse initale
-			// this.vx = (this.vx / longeurDeplacement) * speedBall();
-			// this.vy = (this.vy / longeurDeplacement) * speedBall();
 		}, 1000);
 
 
@@ -65,22 +59,29 @@ class Ball {
 
 	move(players) {
 		let longeurDeplacement = lenght(this.vx, this.vy); //calcule la norm du vecteur déplacement pour évité que la balle se déplace plus vite en diagnal
+		let additionalSpeedY = 0;
 		if (longeurDeplacement != 0) {
-			if (this.rect.top() <= 0 || this.rect.bot() >= height) {
-				this.vy = -this.vy;
+
+			if (this.rect.top() <= 0) {
+				this.vy = Math.abs(this.vy);
+			} else if (this.rect.bot() >= height) {
+				this.vy = -Math.abs(this.vy);
 			}
 			for (var player of players) {
 				if (this.rect.coll(player.rect)) {// détecte une collision avec un joueurs
-
 					let distBallFromCenter = Math.abs(this.x - width / 2); //distance par rapport au centre de la balle
 					let distPlayerSideFromCenter = Math.min(Math.abs(player.rect.left() - width / 2), Math.abs(player.rect.right() - width / 2)); //on parle ici du coté le plus proche du centre
-					console.log(distPlayerSideFromCenter);
 					if (distBallFromCenter > distPlayerSideFromCenter) {//alors rebons sur les coté haut ou bas
-						console.log("vertical bcs : ", distBallFromCenter, distPlayerSideFromCenter);
-						this.vy = -this.vy; // simule un rebond
-						this.vy += player.vy;// si joueur se déplace => pousse la balle
+						let centerYPlayer = player.rect.top() + player.rect.w / 2;
+						if (this.y > centerYPlayer) {//ball plus basse
+							this.vy = Math.abs(this.vy);
+						} else {
+							this.vy = -Math.abs(this.vy);
+						}
+						additionalSpeedY += player.vy;// si joueur se déplace => pousse la balle
+						console.log(`vertical : vy = ${this.vy}\t plus lion ? ${distBallFromCenter - distPlayerSideFromCenter}`);
 					} else {//alors rebons sur les droit ou gauche
-						console.log("horizontal bcs : ", distBallFromCenter, distPlayerSideFromCenter);
+						console.log("horizontal");
 						this.vx = -this.vx; // inverse le déplacement horizontal
 
 						//si la balle touch le haut du joueur elle ira vers le haut
@@ -91,10 +92,11 @@ class Ball {
 					break;//si touche un joueur => impossible de touché l'autre en même temps
 				}
 			}
+			longeurDeplacement = lenght(this.vx, this.vy);
 
 			//normalise les déplacements
-			this.x += (this.vx / longeurDeplacement) * speedBall();
-			this.y += (this.vy / longeurDeplacement) * speedBall();
+			this.x += this.vx / longeurDeplacement * speedBall();
+			this.y += this.vy / longeurDeplacement * speedBall() + additionalSpeedY;
 
 			this.updateRect();
 		}
