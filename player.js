@@ -1,7 +1,7 @@
 
 const wp = 20;
 const hp = 80;
-var speedPlayer = () => height / 75 + settingsGame.difficulty * 7;
+var speedPlayer = () => 5;//height / 75 + settingsGame.difficulty * 7
 const coteDuCamp = {
 	"left": "gauche",
 	"right": "right"
