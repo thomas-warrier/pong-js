@@ -57,8 +57,7 @@ const background = new Image();
 background.src = 'assets/background.jpg';
 /**
  * pour draw on efface tout ce qu'il y avait avant pour tout redessiner
- */
- 
+ */ 
 function draw() {
     clear();
     
