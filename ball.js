@@ -94,6 +94,7 @@ class Ball {
 
 			if (this.rect.coll(player.rect)) {// détecte une collision avec un joueurs
 				this.color = player.color;
+				playTouchSound();
 
 				this.multiplicatorSpeed *= 1.01;
 
