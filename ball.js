@@ -25,6 +25,7 @@ class Ball {
 	 * fait rappraitre la ball à sa possition inital
 	 */
 	spawn() {
+		console.log("ball spawn");
 		this.tail = [];
 
 
@@ -36,9 +37,11 @@ class Ball {
 		this.vx = this.vy = 0;
 		setTimeout(() => {
 			do {
+				console.log("testing");
 				this.vx = (Math.random() * 2 - 1);
 				this.vy = Math.random() * 2 - 1;
 			} while (Math.abs(this.vx) <= 0.2);// pr que la balle aille sur les coté et pas uniquement vers le haut
+			console.log("done");
 			this.x = this.defaultX;
 			this.y = this.defaultY;
 		}, 1000);
@@ -83,8 +86,10 @@ class Ball {
 		//collision haut et bas
 		if (this.rect.top() <= 0) {
 			this.vy = Math.abs(this.vy);
+			playBongSound();
 		} else if (this.rect.bot() >= height) {
 			this.vy = -Math.abs(this.vy);
+			playBongSound();
 		}
 
 		//collision joueurs
@@ -98,7 +103,13 @@ class Ball {
 
 				this.multiplicatorSpeed *= 1.01;
 
-				this.vx = -this.vx; // inverse le déplacement horizontal
+				// inverse le déplacement horizontal
+				if(player.cote == coteDuCamp.left){//on fait comme cella pour évité les bugs de multi détection qui entraine des mauvais changement de directions
+					this.vx = Math.abs(this.vx);
+				}else{
+					this.vx = -Math.abs(this.vx);
+
+				}
 
 				//si la balle touch le haut du joueur elle ira vers le haut
 				//si elle touche le millieu elle ira perpendiculaire au joueur

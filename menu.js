@@ -19,15 +19,18 @@ class Menu {
 	constructor() {
 		this.centerX = width / 2;
 		this.menuLabel = "Menu";
+		this.selected = 0;
+
+		
 		this.buttonsStart = [
 			new Button(() => "Play", this.centerX, () => {
+				this.selected = 0;
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
 				resteGame();
 			}),
 			new Button(() => `Difficulty : ${settingsGame.difficulty}`, this.centerX, () => {
 				settingsGame.difficulty = ++settingsGame.difficulty % 3;
-				console.log(settingsGame.difficulty);
 			})
 		];
 
@@ -37,16 +40,18 @@ class Menu {
 				settingsGame.inGame = true;
 			}),
 			new Button(() => "New Game", this.centerX, () => {
+				this.selected = 0;
 				settingsGame.playing = true;
 				settingsGame.inGame = true;
 				resteGame();
 			}),
 			new Button(() => "Back To Menu", this.centerX, () => {
+				this.selected = 0;
 				settingsGame.inGame = false;
 			}),
 
 		];
-		this.selected = 0;
+		
 	}
 
 	selecteDown() {

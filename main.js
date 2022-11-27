@@ -8,7 +8,7 @@ var settingsGame = {
 
 var menu = new Menu();
 
-var p1 = new Player(20, (height - hp) / 2, "z", "s", coteDuCamp.left, "green"); //on place le player un a gauche au milieu
+var p1 = new Player(20, (height - hp) / 2, "z", "s", coteDuCamp.left, "blue"); //on place le player un a gauche au milieu
 var p2 = new Player(
     width - wp - 20,
     (height - hp) / 2,
