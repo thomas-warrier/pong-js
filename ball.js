@@ -79,9 +79,7 @@ class Ball {
 							this.vy = -Math.abs(this.vy);
 						}
 						additionalSpeedY += player.vy;// si joueur se déplace => pousse la balle
-						console.log(`vertical : vy = ${this.vy}\t plus lion ? ${distBallFromCenter - distPlayerSideFromCenter}`);
 					} else {//alors rebons sur les droit ou gauche
-						console.log("horizontal");
 						this.vx = -this.vx; // inverse le déplacement horizontal
 
 						//si la balle touch le haut du joueur elle ira vers le haut

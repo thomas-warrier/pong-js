@@ -1,7 +1,7 @@
 
 const wp = 20;
 const hp = 80;
-var speedPlayer = () => height / 75 + settingsGame.difficulty * 7;
+var speedPlayer = () => height / 75 + settingsGame.difficulty * 6;
 const coteDuCamp = {
 	"left": "gauche",
 	"right": "right"
@@ -21,6 +21,7 @@ class Player {
 		this.up = up;
 		this.down = down;
 		this.cote = cote;
+		this.holdingCounter = 0;
 
 		this.vy = 0;
 	}
@@ -55,10 +56,12 @@ class Player {
 	}
 
 	update() {
-		this.rect.y += this.vy;
-		if (this.rect.bot() >= height || this.rect.top() <= 0) {
-			this.y -= this.vy;
-		}
+		if (this.vy != 0) this.holdingCounter += 0.4;
+		else this.holdingCounter = 0;
+
+
+		this.rect.y += this.vy * this.holdingCounter / (this.holdingCounter + 2);
+
 		this.playerOutOfScreen()
 	}
 

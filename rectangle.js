@@ -1,4 +1,4 @@
-class Rect {
+	class Rect {
 	/**
 	 * 
 	 * @param {double} x position x
