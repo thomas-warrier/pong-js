@@ -56,11 +56,16 @@ function releaseKey(ev) {
     }
 }
 
+const background = new Image();
+background.src = 'assets/background.jpg';
 /**
  * pour draw on efface tout ce qu'il y avait avant pour tout redessiner
  */
+ 
 function draw() {
     clear();
+    
+    ctx.drawImage(background, 0, 0, width, height);
     if (settingsGame.playing) {
         p1.draw();
         p2.draw();
@@ -69,6 +74,7 @@ function draw() {
         //menu
         menu.draw();
     }
+
 }
 
 /**
