@@ -8,19 +8,21 @@ var settingsGame = {
 
 var menu = new Menu();
 
-var p1 = new Player(20, (height - hp) / 2, "z", "s", coteDuCamp.left); //on place le player un a gauche au milieu
+var p1 = new Player(20, (height - hp) / 2, "z", "s", coteDuCamp.left, "green"); //on place le player un a gauche au milieu
 var p2 = new Player(
     width - wp - 20,
     (height - hp) / 2,
     "i",
     "k",
-    coteDuCamp.right
+    coteDuCamp.right,
+    "red"
 ); //on place le player deux a droite au milieu
 var ball = new Ball(width / 2, height / 2); //on place la ball au milieu du canva
 
 
 function resteGame() {
     p1.score = p2.score = 0;
+    p1.rect.y = p2.rect.y = (height - hp) / 2;
     ball.spawn();
 }
 
@@ -29,6 +31,7 @@ function resteGame() {
  */
 function pressKey(ev) {
     if (settingsGame.playing) {
+
         p1.keyPress(ev.key);
         p2.keyPress(ev.key);
     } else {//menu

@@ -16,6 +16,8 @@ class Ball {
 		this.defaultX = x;
 		this.defaultY = y;
 		this.spawn();
+
+		this.lenghtTail = 20;
 	}
 
 
@@ -23,6 +25,9 @@ class Ball {
 	 * fait rappraitre la ball à sa possition inital
 	 */
 	spawn() {
+		this.tail = [];
+
+
 		this.x = this.defaultX;
 		this.y = this.defaultY;
 		this.updateRect();//met a jour l'attribut rect (pour correspondre aux nouvelles coordonnée)
@@ -41,14 +46,30 @@ class Ball {
 
 	}
 	draw() {
-		setColor("white");
+		if (this.color) {
+			setColor(this.color)
+		} else {
+			setColor("blue");
+		}
+		for (let i = 0; i < this.tail.length; i++) {
+			drawCircle(this.tail[i][0], this.tail[i][1], rayonBall * i / this.tail.length);
+		}
+		for (let p of this.tail) {
+
+		}
+		setColor("white")
+
 		drawCircle(this.x, this.y, rayonBall);
+
 	}
 
 
 
 	update(ar) {
-		this.move(ar)
+		this.tail.push([this.x, this.y]);
+		if (this.tail.length > this.lenghtTail) this.tail.shift();
+
+		this.move(ar);
 	}
 
 	/**
@@ -59,8 +80,6 @@ class Ball {
 	}
 
 	move(players) {
-		console.log(this.x, this.y);
-
 		//collision haut et bas
 		if (this.rect.top() <= 0) {
 			this.vy = Math.abs(this.vy);
@@ -74,7 +93,9 @@ class Ball {
 			let distPlayerSideFromCenter = Math.min(Math.abs(player.rect.left() - width / 2), Math.abs(player.rect.right() - width / 2)); //on parle ici du coté le plus proche du centre
 
 			if (this.rect.coll(player.rect)) {// détecte une collision avec un joueurs
-				this.multiplicatorSpeed += 0.07;
+				this.color = player.color;
+
+				this.multiplicatorSpeed *= 1.01;
 
 				this.vx = -this.vx; // inverse le déplacement horizontal
 

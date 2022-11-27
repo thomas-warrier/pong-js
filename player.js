@@ -15,12 +15,14 @@ class Player {
 	 * @param {int} down le nom de la touche pour allez vers le bas
 	 * 
 	 */
-	constructor(x, y, up, down, cote) {
+	constructor(x, y, up, down, cote, color) {
 		this.rect = new Rect(x, y, wp, hp);
 		this.score = 0;
 		this.up = up;
 		this.down = down;
 		this.cote = cote;
+		this.color = color;
+
 		this.holdingCounter = 0;
 
 		this.vy = 0;
@@ -40,7 +42,7 @@ class Player {
 	}
 
 	draw() {
-		setColor("white");
+		setColor(this.color);
 		this.rect.draw();
 		this.drawScore();
 	}
