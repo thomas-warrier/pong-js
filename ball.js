@@ -27,6 +27,7 @@ class Ball {
 		this.y = this.defaultY;
 		this.updateRect();//met a jour l'attribut rect (pour correspondre aux nouvelles coordonnée)
 
+		this.multiplicatorSpeed = 1;
 		this.vx = this.vy = 0;
 		setTimeout(() => {
 			do {
@@ -58,46 +59,45 @@ class Ball {
 	}
 
 	move(players) {
-		let longeurDeplacement = lenght(this.vx, this.vy); //calcule la norm du vecteur déplacement pour évité que la balle se déplace plus vite en diagnal
-		let additionalSpeedY = 0;
-		if (longeurDeplacement != 0) {
+		console.log(this.x, this.y);
 
-			if (this.rect.top() <= 0) {
-				this.vy = Math.abs(this.vy);
-			} else if (this.rect.bot() >= height) {
-				this.vy = -Math.abs(this.vy);
-			}
-			for (var player of players) {
-				if (this.rect.coll(player.rect)) {// détecte une collision avec un joueurs
-					let distBallFromCenter = Math.abs(this.x - width / 2); //distance par rapport au centre de la balle
-					let distPlayerSideFromCenter = Math.min(Math.abs(player.rect.left() - width / 2), Math.abs(player.rect.right() - width / 2)); //on parle ici du coté le plus proche du centre
-					if (distBallFromCenter > distPlayerSideFromCenter) {//alors rebons sur les coté haut ou bas
-						let centerYPlayer = player.rect.top() + player.rect.w / 2;
-						if (this.y > centerYPlayer) {//ball plus basse
-							this.vy = Math.abs(this.vy);
-						} else {
-							this.vy = -Math.abs(this.vy);
-						}
-						additionalSpeedY += player.vy;// si joueur se déplace => pousse la balle
-					} else {//alors rebons sur les droit ou gauche
-						this.vx = -this.vx; // inverse le déplacement horizontal
-
-						//si la balle touch le haut du joueur elle ira vers le haut
-						//si elle touche le millieu elle ira perpendiculaire au joueur
-						//si elle touche le bas du joueur elle ira vers le bas
-						this.vy = (this.y - player.rect.y - player.rect.h / 2) / player.rect.h;
-					}
-					break;//si touche un joueur => impossible de touché l'autre en même temps
-				}
-			}
-			longeurDeplacement = lenght(this.vx, this.vy);
-
-			//normalise les déplacements
-			this.x += this.vx / longeurDeplacement * speedBall();
-			this.y += this.vy / longeurDeplacement * speedBall() + additionalSpeedY;
-
-			this.updateRect();
+		//collision haut et bas
+		if (this.rect.top() <= 0) {
+			this.vy = Math.abs(this.vy);
+		} else if (this.rect.bot() >= height) {
+			this.vy = -Math.abs(this.vy);
 		}
+
+		//collision joueurs
+		for (var player of players) {
+			let distFromCenterSideExtBall = Math.min(Math.abs(this.rect.left() - width / 2), Math.abs(this.rect.right() - width / 2));
+			let distPlayerSideFromCenter = Math.min(Math.abs(player.rect.left() - width / 2), Math.abs(player.rect.right() - width / 2)); //on parle ici du coté le plus proche du centre
+
+			if (this.rect.coll(player.rect)) {// détecte une collision avec un joueurs
+				this.multiplicatorSpeed += 0.07;
+
+				this.vx = -this.vx; // inverse le déplacement horizontal
+
+				//si la balle touch le haut du joueur elle ira vers le haut
+				//si elle touche le millieu elle ira perpendiculaire au joueur
+				//si elle touche le bas du joueur elle ira vers le bas
+				this.vy = (this.y - player.rect.y - player.rect.h / 2) / player.rect.h;
+
+				break;//si touche un joueur => impossible de touché l'autre en même temps
+			} else if (distFromCenterSideExtBall > distPlayerSideFromCenter) {
+				for (var pWin of players) { // fait gagner l'autre joueur
+					pWin.detectWinRound(this);
+				}
+				this.spawn();
+			}
+		}
+		let longeurDeplacement = lenght(this.vx, this.vy);
+
+		//normalise les déplacements
+		this.x += this.vx / longeurDeplacement * speedBall() * this.multiplicatorSpeed;
+		this.y += this.vy / longeurDeplacement * speedBall() * this.multiplicatorSpeed;
+
+		this.updateRect();
 	}
 
 }
