@@ -21,7 +21,7 @@ class Menu {
 		this.menuLabel = "Menu";
 		this.selected = 0;
 
-		
+
 		this.buttonsStart = [
 			new Button(() => "Play", this.centerX, () => {
 				this.selected = 0;
@@ -51,14 +51,15 @@ class Menu {
 			}),
 
 		];
-		
+
 	}
 
 	selecteDown() {
 		this.selected = (this.selected + 1) % this.listButton.length;
 	}
 	selecteUp() {
-		this.selected = Math.abs((this.selected - 1) % this.listButton.length);
+		this.selected--;
+		if(this.selected < 0) this.selected = this.listButton.length - 1;
 	}
 
 

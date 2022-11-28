@@ -1,5 +1,5 @@
 var settingsGame = {
-    palying: false,
+    playing: false,
     inGame: false,
 
 
@@ -24,6 +24,14 @@ function resteGame() {
     p1.score = p2.score = 0;
     p1.rect.y = p2.rect.y = (height - hp) / 2;
     ball.spawn();
+}
+
+function detectionWin() {
+    let scoreWin = 5;
+    if(p1.score >= scoreWin || p2.score >= scoreWin){
+        settingsGame.playing = false;
+        settingsGame.inGame = false;
+    }
 }
 
 /**
@@ -80,7 +88,9 @@ function draw() {
  * pour update la position des players et de la ball (se fait 60 fois toute les secondes)
  */
 function update() {
+    console.log(settingsGame);
     if (settingsGame.playing) {
+        detectionWin();
         p1.update();
         p2.update();
         ball.update([p1, p2]);
