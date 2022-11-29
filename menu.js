@@ -44,8 +44,17 @@ class Menu {
 			new Button(() => "Back To Menu", this.centerX, () => {
 				settingsGame.inGame = false;
 			}),
-
 		];
+		this.buttonsWin =[
+			new Button(() => "New Game", this.centerX, () => {
+				settingsGame.playing = true;
+				settingsGame.inGame = true;
+				resteGame();
+			}),
+			new Button(() => "Back To Menu", this.centerX, () => {
+				settingsGame.inGame = false;
+			}),
+		]
 		this.selected = 0;
 	}
 
