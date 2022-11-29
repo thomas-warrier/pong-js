@@ -25,7 +25,7 @@ function resteGame() {
 }
 
 function detectionWin() {
-    let scoreWin = 2;
+    let scoreWin = 11;
     if(p1.score >= scoreWin || p2.score >= scoreWin){
         menu.stateMenu.setMenu(new WinMenu());
         settingsGame.playing = false;
@@ -100,3 +100,9 @@ function update() {
 setInterval(update, FPS * 1000); //on set l'intervalle pour update tout les FPS*1000
 document.addEventListener("keydown", pressKey); //on appelle pressKey quand une touche est pressée
 document.addEventListener("keyup", releaseKey); //on appelle releaseKey quand une touche est relachée
+
+
+document.querySelector("#game-rule button").addEventListener("click", ()=>{
+    var gameRule = document.getElementById("game-rule");
+    gameRule.parentElement.removeChild(gameRule);
+});
