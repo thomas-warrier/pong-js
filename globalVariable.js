@@ -9,3 +9,5 @@ myFont.load().then(function(font){
     ctx.font = "50px Audiowide"; //je set la font
     ctx.textAlign = "center";
 });
+
+

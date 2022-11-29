@@ -60,9 +60,10 @@ class Ball {
 			drawCircle(this.tail[i][0], this.tail[i][1], rayonBall * i / this.tail.length);
 		}
 		setColor("white")
-
+		ctx.shadowBlur = 20;
+		ctx.shadowColor = "white";
 		drawCircle(this.x, this.y, rayonBall);
-		
+		ctx.shadowBlur = 0;
 		
 
 	}

@@ -25,9 +25,9 @@ function drawRect(x, y, w, h) {
  * permet de dessiner un cercle a partir d'un point de départ (qui sera au centre du cercle) et d'un diamètre
  */
 function drawCircle(x, y, diametre) {
-	ctx.beginPath()
-	ctx.arc(x, y, diametre, 0, 2 * Math.PI, false)
-	ctx.fill()
+	ctx.beginPath();
+	ctx.arc(x, y, diametre, 0, 2 * Math.PI, false);
+	ctx.fill();
 }
 
 function drawText(str, x, y) {

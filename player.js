@@ -43,8 +43,11 @@ class Player {
 
 	draw() {
 		setColor(this.color);
+		ctx.shadowBlur = 30;
+		ctx.shadowColor = this.color;
 		this.rect.draw();
 		this.drawScore();
+		ctx.shadowBlur = 0;
 	}
 
 	drawScore() {
