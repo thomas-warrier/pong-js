@@ -62,7 +62,8 @@ class Ball {
 		setColor("white")
 
 		drawCircle(this.x, this.y, rayonBall);
-
+		
+		
 
 	}
 
