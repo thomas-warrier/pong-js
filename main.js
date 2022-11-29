@@ -1,7 +1,5 @@
 var settingsGame = {
     playing: false,
-    inGame: false,
-
 
     difficulty: 1, // 0 : facile, 1 : moyen, 2 : difficile
 }
@@ -27,10 +25,10 @@ function resteGame() {
 }
 
 function detectionWin() {
-    let scoreWin = 5;
+    let scoreWin = 2;
     if(p1.score >= scoreWin || p2.score >= scoreWin){
+        menu.stateMenu.setMenu(new WinMenu());
         settingsGame.playing = false;
-        settingsGame.inGame = false;
     }
 }
 
@@ -47,6 +45,7 @@ function pressKey(ev) {
     }
 
     if (ev.key == "Escape") {
+        menu.stateMenu.setMenu(new PauseMenu());
         settingsGame.playing = false;
     }
     ev.stopPropagation();
@@ -88,14 +87,11 @@ function draw() {
  * pour update la position des players et de la ball (se fait 60 fois toute les secondes)
  */
 function update() {
-    console.log(settingsGame);
     if (settingsGame.playing) {
         detectionWin();
         p1.update();
         p2.update();
         ball.update([p1, p2]);
-    } else {//menu
-        menu.update();
     }
 
     draw();

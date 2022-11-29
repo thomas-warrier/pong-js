@@ -109,7 +109,6 @@ class Ball {
 						this.vx = Math.abs(this.vx);
 					} else {
 						this.vx = -Math.abs(this.vx);
-
 					}
 
 					//si la balle touch le haut du joueur elle ira vers le haut

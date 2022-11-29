@@ -1,95 +1,25 @@
 
-class Button {
-	constructor(str, x, action) {
-		this.txt = str;
-		this.x = x;
-		this.action = action;
-	}
-
-	draw(y) {
-		drawText(this.txt(), this.x, y);
-	}
-
-	run() {
-		this.action();
-	}
-}
 
 class Menu {
 	constructor() {
 		this.centerX = width / 2;
 		this.menuLabel = "Menu";
-		this.selected = 0;
 
-
-		this.buttonsStart = [
-			new Button(() => "Play", this.centerX, () => {
-				this.selected = 0;
-				settingsGame.playing = true;
-				settingsGame.inGame = true;
-				resteGame();
-			}),
-			new Button(() => `Difficulty : ${settingsGame.difficulty}`, this.centerX, () => {
-				settingsGame.difficulty = ++settingsGame.difficulty % 3;
-			})
-		];
-
-		this.buttonsPause = [
-			new Button(() => "Resume", this.centerX, () => {
-				settingsGame.playing = true;
-				settingsGame.inGame = true;
-			}),
-			new Button(() => "New Game", this.centerX, () => {
-				this.selected = 0;
-				settingsGame.playing = true;
-				settingsGame.inGame = true;
-				resteGame();
-			}),
-			new Button(() => "Back To Menu", this.centerX, () => {
-				this.selected = 0;
-				settingsGame.inGame = false;
-			}),
-		];
-
-		this.buttonsWin =[
-			new Button(() => "New Game", this.centerX, () => {
-				settingsGame.playing = true;
-				settingsGame.inGame = true;
-				resteGame();
-			}),
-			new Button(() => "Back To Menu", this.centerX, () => {
-				settingsGame.inGame = false;
-			}),
-		]
-		this.selected = 0;
+		this.stateMenu = new StateMenu();
+		this.stateMenu.setMenu(new GameMenu());
 	}
 
 	selecteDown() {
-		this.selected = (this.selected + 1) % this.listButton.length;
+		this.stateMenu.getMenu().selected = (this.stateMenu.getMenu().selected + 1) % this.stateMenu.getMenu().buttons.length;
 	}
 	selecteUp() {
-		this.selected--;
-		if(this.selected < 0) this.selected = this.listButton.length - 1;
+		this.stateMenu.getMenu().selected--;
+		if (this.stateMenu.getMenu().selected < 0) this.stateMenu.getMenu().selected = this.stateMenu.getMenu().buttons.length - 1;
 	}
 
 
 	draw() {
-		setColor("white");
-		drawText(this.menuLabel, this.centerX, 50);
-		let gapY = 100;
-		for (let i = 0; i < this.listButton.length; i++) {
-			let btn = this.listButton[i]
-			let currentGap = gapY * i + 210
-			btn.draw(currentGap);
-
-			if (this.selected == i) {
-				let w = 50;
-				drawRect(btn.x - w / 2, currentGap + 10, w, 2);
-			}
-		}
-	}
-	update() {
-		this.listButton = settingsGame.inGame ? this.buttonsPause : this.buttonsStart;
+		this.stateMenu.getMenu().draw();
 	}
 
 	keyPressed(key) {
@@ -101,7 +31,7 @@ class Menu {
 				this.selecteDown();
 				break;
 			case "Enter":
-				this.listButton[this.selected].run();
+				this.stateMenu.getMenu().doAction();
 				break;
 			default:
 				break;
