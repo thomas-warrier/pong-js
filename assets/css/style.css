@@ -4,6 +4,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+	background:linear-gradient(80deg,#1E1638,#3D0F34);
 }
 
 @font-face {
@@ -21,6 +22,7 @@ body {
 	font-family: 'Audiowide', Helvetica, sans-serif;
 	border-radius: 5%;
 	padding: 30px;
+
 }
 
 p{
