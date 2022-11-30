@@ -1,4 +1,5 @@
 
+
 class Button {
 	constructor(str, x, action) {
 		this.txt = str;

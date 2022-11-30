@@ -1,11 +1,14 @@
 
 const wp = 5;
 const hp = 100;
-var speedPlayer = () => height / 75 + settingsGame.difficulty * 6;
+var speedPlayer = () => height / 75 + settingsGame.difficulty * 6; //la vitesse de la balle
 const coteDuCamp = {
 	"left": "gauche",
 	"right": "right"
 }
+/**
+ * class PLayer
+ */
 class Player {
 	/**
 	 * 
@@ -27,20 +30,28 @@ class Player {
 
 		this.vy = 0;
 	}
-
+	/**
+	 * detecte quand un point est gagné
+	 * @param {Ball} ball 
+	 */
 	detectWinRound(ball) {
 		if (!(this.cote == coteDuCamp.left && ball.rect.left() < this.rect.right() ||
 			this.cote == coteDuCamp.right && ball.rect.right() > this.rect.left())) { //si le player est a gauche c'est le moment ou le coté droit de la balle franchis la bordure qui nous intéresse
-			this.score++;
+			this.score++;//incr
 		}
 	}
+	/**
+	 * detecte si le player est en dehors des bordures de la map
+	 */
 	playerOutOfScreen() {
 		if (this.rect.top() < 0 || this.rect.bot() > height) {
 			this.rect.y -= this.vy;
 			this.vy = 0;
 		}
 	}
-
+	/**
+	 * draw le player avec une aura de la couleur du player
+	 */
 	draw() {
 		setColor(this.color);
 		ctx.shadowBlur = 30;
@@ -49,7 +60,9 @@ class Player {
 		this.drawScore();
 		ctx.shadowBlur = 0;
 	}
-
+	/**
+	 * draw le score en haut de l'écran
+	 */
 	drawScore() {
 		let x = width / 4;
 		if (this.cote == coteDuCamp.right) {
@@ -57,7 +70,9 @@ class Player {
 		}
 		drawText(this.score.toString(), x, 50);
 	}
-
+	/**
+	 * update si player en dehors des bordures
+	 */
 	update() {
 		if (this.vy != 0) this.holdingCounter += 0.4;
 		else this.holdingCounter = 0;

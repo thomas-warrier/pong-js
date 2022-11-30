@@ -1,5 +1,7 @@
 
-
+/**
+ * class of pause menu
+ */
 class PauseMenu {
 	constructor() {
 		this.centerX = width / 2;
@@ -8,7 +10,7 @@ class PauseMenu {
 		this.isActive = false;
 
 
-		this.buttons = [
+		this.buttons = [ //liste des bouttons du menu
 			new Button(() => "Resume", this.centerX, () => {
 				settingsGame.playing = true;
 			}),
@@ -22,7 +24,9 @@ class PauseMenu {
 		];
 	}
 
-
+	/**
+	 * draw le menu 
+	 */
 	draw() {
 		setColor("white");
 
@@ -39,7 +43,9 @@ class PauseMenu {
 			}
 		}
 	}
-
+	/**
+	 * pour faire quelque chose quand le boutton est pressé
+	 */
 	doAction() {
 		this.buttons[this.selected].run();
 	}

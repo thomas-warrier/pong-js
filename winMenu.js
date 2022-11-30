@@ -6,7 +6,7 @@ class WinMenu{
 		this.selected = 0;
 		this.isActive = false;
 
-
+		//la liste de boutton deviens la liste de boutton du menu
 		this.buttons = [
 			new Button(() => "New Game", this.centerX, () => {
 				settingsGame.playing = true;
@@ -18,7 +18,9 @@ class WinMenu{
 		];
 	}
 
-
+	/**
+	 * pour draw le menu de victoire
+	 */
 	draw() {
 		setColor("white");
 
@@ -35,6 +37,9 @@ class WinMenu{
 			}
 		}
 	}
+	/**
+	 * pour faire quelque chose quand le boutton est pressé
+	 */
 	doAction() {
 		this.buttons[this.selected].run();
 	}
