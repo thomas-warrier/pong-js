@@ -102,7 +102,7 @@ document.addEventListener("keydown", pressKey); //on appelle pressKey quand une 
 document.addEventListener("keyup", releaseKey); //on appelle releaseKey quand une touche est relachée
 
 
-document.querySelector("#game-rule button").addEventListener("click", ()=>{
-    var gameRule = document.getElementById("game-rule");
-    gameRule.parentElement.removeChild(gameRule);
+document.querySelector("#start-popUp button").addEventListener("click", ()=>{
+    var startPopUp = document.getElementById("start-popUp");
+    startPopUp.parentElement.removeChild(startPopUp);
 });
