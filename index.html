@@ -11,14 +11,39 @@
 
 <body>
 	<canvas id="can" width="1000" height="600"></canvas>
+	<div id="start-popUp">
+		<div class="flex-row" id="container">
+			<div id="game-rule">
+				<h1>The rules of Pong</h1>
+				<p>Pong’s interface consists of two paddles and a ball.
+					The ball deflects off the paddle upon impact.
+					you win the point when your opponent misses the ball.
+					<span>You need to obtain 11 points to win.</span>
+				</p>
 
-	<div id="game-rule">
-		<h1>The rules of Pong</h1>
-		<p>Pong’s interface consists of two paddles and a ball.
-			The ball deflects off the paddle upon impact.
-			you win the point when your opponent misses the ball.
-			<span>You need to obtain 11 points to win.</span>
-		</p>
+			</div>
+			<div id="control">
+				<h1>Control</h1>
+				<div class="flex-row">
+					<div class="flex-col justify" >
+						<h3>Player 1</h3>
+						<p>Top : z</p>
+						<p>Bottom : s</p>
+					</div>
+					<div class="flex-col justify">
+						<h3>Player 2</h3>
+						<p>Top : i</p>
+						<p>Bottom : k</p>
+					</div>
+				</div>
+				<div class="flex-col justify">
+					<h3>Menu</h3>
+					<p>Top : Top arrow</p>
+					<p>Bottom : Bottom arrow</p>
+					<p>Select : Enter</p>
+				</div>
+			</div>
+		</div>
 		<h2>Good Luck !</h2>
 		<button class="button-64" role="button"><span class="text">I Understand</span></button>
 	</div>
