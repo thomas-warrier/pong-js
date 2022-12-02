@@ -48,6 +48,10 @@ Fonctionnalité
 
 - plus elle sera basse par rapport au milieu plus elle ira vers le bas.
 
+- Ne pas re-afficher le message d'explication au rechargement de la page
+
+- sauvgarder les score (uniquement au rechargement de page)
+
 # Ce qu'on a réussi a faire
  - nous avons réussi a implémenter tout ce nous voulions faire
 

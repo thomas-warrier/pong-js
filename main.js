@@ -4,7 +4,8 @@ var settingsGame = {
     difficulty: 1, // 0 : facile, 1 : moyen, 2 : difficile
 }
 
-var tableauScore = [["P1", "P2"]]
+var tableauScore = loadTableScore();
+updateTable(tableauScore);
 
 var menu = new Menu();
 
@@ -31,7 +32,9 @@ function detectionWin() {
     if (p1.score >= scoreWin || p2.score >= scoreWin) {
         tableauScore.push([p1.score, p2.score]);
         updateTable(tableauScore);
-        menu.stateMenu.setMenu(new WinMenu());
+        menu.stateMenu.setMenu(new WinMenu(
+            p1.score > p2.score ? "Player 1" : "Player 2"
+        ));
         settingsGame.playing = false;
     }
 }
@@ -106,7 +109,14 @@ document.addEventListener("keydown", pressKey); //on appelle pressKey quand une 
 document.addEventListener("keyup", releaseKey); //on appelle releaseKey quand une touche est relachée
 
 
-document.querySelector("#start-popUp button").addEventListener("click", () => {
+
+// Gestion de la popUp tuto
+function removePopUp() {
+    sessionStorage.setItem("tutoHasBeenSeen", true)
     var startPopUp = document.getElementById("start-popUp");
     startPopUp.parentElement.removeChild(startPopUp);
-});
+}
+document.querySelector("#start-popUp button").addEventListener("click", removePopUp);
+if (sessionStorage.getItem("tutoHasBeenSeen")) {
+    removePopUp();
+}

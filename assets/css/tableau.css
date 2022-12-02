@@ -1,0 +1,22 @@
+table {
+	position: fixed;
+	right: 50px;
+	background-color: #220a67;
+	padding: 16px;
+	color: white;
+	border-collapse: collapse;
+}
+table.hidden {
+	visibility: hidden;
+}
+
+table tr:nth-child(2n) {
+	background-color: #19084d;
+	padding: 16px;
+	color: white;
+	border-collapse: collapse;
+}
+table td {
+	padding: 14px;
+	text-align: center;
+}

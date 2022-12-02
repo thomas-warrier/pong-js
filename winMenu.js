@@ -1,8 +1,8 @@
 
-class WinMenu{
-	constructor(){
+class WinMenu {
+	constructor(nameWiner) {
 		this.centerX = width / 2;
-		this.menuLabel = "Win";
+		this.menuLabel = nameWiner + " has win";
 		this.selected = 0;
 		this.isActive = false;
 
