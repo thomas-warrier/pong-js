@@ -4,6 +4,8 @@ var settingsGame = {
     difficulty: 1, // 0 : facile, 1 : moyen, 2 : difficile
 }
 
+var tableauScore = [["P1", "P2"]]
+
 var menu = new Menu();
 
 var p1 = new Player(20, (height - hp) / 2, "z", "s", coteDuCamp.left, "blue"); //on place le player un a gauche au milieu
@@ -25,8 +27,10 @@ function resteGame() {
 }
 
 function detectionWin() {
-    let scoreWin = 11;
-    if(p1.score >= scoreWin || p2.score >= scoreWin){
+    let scoreWin = 1;
+    if (p1.score >= scoreWin || p2.score >= scoreWin) {
+        tableauScore.push([p1.score, p2.score]);
+        updateTable(tableauScore);
         menu.stateMenu.setMenu(new WinMenu());
         settingsGame.playing = false;
     }
@@ -67,10 +71,10 @@ const background = new Image();
 background.src = 'assets/background.jpg';
 /**
  * pour draw on efface tout ce qu'il y avait avant pour tout redessiner
- */ 
+ */
 function draw() {
     clear();
-    
+
     ctx.drawImage(background, 0, 0, width, height);
     if (settingsGame.playing) {
         p1.draw();
@@ -102,7 +106,7 @@ document.addEventListener("keydown", pressKey); //on appelle pressKey quand une 
 document.addEventListener("keyup", releaseKey); //on appelle releaseKey quand une touche est relachée
 
 
-document.querySelector("#start-popUp button").addEventListener("click", ()=>{
+document.querySelector("#start-popUp button").addEventListener("click", () => {
     var startPopUp = document.getElementById("start-popUp");
     startPopUp.parentElement.removeChild(startPopUp);
 });
