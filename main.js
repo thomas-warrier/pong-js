@@ -28,7 +28,7 @@ function resteGame() {
 }
 
 function detectionWin() {
-    let scoreWin = 1;
+    let scoreWin = 11;
     if (p1.score >= scoreWin || p2.score >= scoreWin) {
         tableauScore.push([p1.score, p2.score]);
         updateTable(tableauScore);
