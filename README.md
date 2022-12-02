@@ -62,7 +62,7 @@ Fonctionnalité
 
 <img src="https://cdn.discordapp.com/attachments/884899575490568292/1048264781397753976/image.png"/>
 
-<img src="https://cdn.discordapp.com/attachments/884899575490568292/1048261478412718150/image.png"/>
+<img src="https://cdn.discordapp.com/attachments/884899575490568292/1048267181214945330/image.png"/>
 
 <img src="https://cdn.discordapp.com/attachments/884899575490568292/1048262247065067571/image.png"/>
 
